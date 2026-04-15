@@ -12,7 +12,6 @@ URL_BEERCUP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgSh
 # Incolla qui i link ai tuoi PDF su Google Drive (assicurati che siano pubblici)
 LINK_REGOLAMENTO = "https://docs.google.com/document/d/e/2PACX-1vSItQqV4_poywuIiJLu9hzQdjRlU5u1aXYGUVr5LVH7FtFER88T4poFJxPqY40Tx81OTJD_bCm9P4Xd/pub"
 LINK_ISCRIZIONE = "https://docs.google.com/document/d/e/2PACX-1vT5_-P8WNOmRry8CUeQZLj9jh5U_ogR_2SLOeZiJoiUTicQaAdlyTPmfNtJO4y1ng/pub"
-LINK ISCRIZIONE CAPITANO = "https://docs.google.com/document/d/e/2PACX-1vS7p9huP7x41KkgVj9lwyKK-C1_t7EDBAC8gtIctzMeTER1u_5zR70c3b6T0xV_DQ/pub"
 LINK_FOTO = "https://link_alle_tue_foto.com"
 
 # --- 2. IMPOSTAZIONI PAGINA ---
