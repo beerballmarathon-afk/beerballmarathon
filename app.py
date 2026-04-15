@@ -82,7 +82,7 @@ elif choice == "🍺 Beer Cup":
         st.bar_chart(data=df_beer, x="Squadra", y="Consumazioni", color="#FFA500")
         st.table(df_beer)
 
-elif choice == "🛒 Shop & Sconti":
+elif choice == "Shop & Sconti 🛒":
     st.header("🛒 Area Riservata Squadre")
     df_team = load_data(URL_TEAM)
     
