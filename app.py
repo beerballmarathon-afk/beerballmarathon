@@ -11,7 +11,7 @@ st_autorefresh(interval=60000, key="datarefresh")
 # INSERISCI QUI I TUOI LINK CSV DI GOOGLE SHEETS
 URL_CALENDARIO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1738657109&single=true&output=csv"
 URL_TEAM = "IL_TUO_LINK_CSV_TEAM"
-URL_BEERCUP = "IL_TUO_LINK_CSV_BEERCUP"
+URL_BEERCUP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1684440180&single=true&output=csv"
 
 # Funzione caricamento dati
 def load_data(url):
