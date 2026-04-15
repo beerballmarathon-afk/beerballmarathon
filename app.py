@@ -10,7 +10,7 @@ st_autorefresh(interval=60000, key="datarefresh")
 
 # INSERISCI QUI I TUOI LINK CSV DI GOOGLE SHEETS
 URL_CALENDARIO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1738657109&single=true&output=csv"
-URL_TEAM = "IL_TUO_LINK_CSV_TEAM"
+URL_TEAM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1955830524&single=true&output=csv"
 URL_BEERCUP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1684440180&single=true&output=csv"
 
 # Funzione caricamento dati
@@ -21,15 +21,15 @@ def load_data(url):
         return pd.DataFrame()
 
 # --- SIDEBAR ---
-st.sidebar.title("🏐 Green Volley 2026")
-menu = ["🏠 Home", "📅 Calendario", "🏆 Classifiche", "🍺 Beer Cup", "🛒 Shop & Sconti", "📸 Foto"]
+st.sidebar.title("BBM 2026")
+menu = ["Home 🏠", "Calendario 📅", "Classifica 🏆", "BeerBall Cup 🍺", "Shop & Sconti 🛒", "Foto 📸", ]
 choice = st.sidebar.radio("Menu", menu)
 
 # --- LOGICA PAGINE ---
 
-if choice == "🏠 Home":
-    st.header("Benvenuti al Torneo di Green Volley!")
-    st.write("Qui trovi tutte le informazioni ufficiali, i risultati live e la classifica della festa.")
+if choice == "Home 🏠":
+    st.header("Benvenuti al BeerBall Marathon 2026")
+    st.write("Qui trovi tutte le informazioni ufficiali, i risultati live e la classifica del tuo girone.")
     
     col1, col2 = st.columns(2)
     with col1:
@@ -39,7 +39,7 @@ if choice == "🏠 Home":
         st.subheader("📝 Iscrizioni")
         st.write("I moduli devono essere consegnati entro le 08:30 al desk.")
 
-elif choice == "📅 Calendario":
+elif choice == "Calendario 📅":
     st.header("📅 Calendario Partite")
     df_cal = load_data(URL_CALENDARIO)
     
@@ -54,7 +54,7 @@ elif choice == "📅 Calendario":
     else:
         st.warning("Carica i dati nel foglio Calendario!")
 
-elif choice == "🏆 Classifiche":
+elif choice == "Classifica 🏆":
     st.header("🏆 Classifica Sportiva")
     df_cal = load_data(URL_CALENDARIO)
     
