@@ -8,7 +8,6 @@ URL_CALENDARIO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLm
 URL_TEAM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1955830524&single=true&output=csv"
 URL_BEERCUP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1684440180&single=true&output=csv"
 URL_FASE_FINALE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=2063867207&single=true&output=csv"
-
 # Incolla qui i link ai tuoi PDF su Google Drive (assicurati che siano pubblici)
 LINK_REGOLAMENTO = "https://docs.google.com/document/d/e/2PACX-1vSItQqV4_poywuIiJLu9hzQdjRlU5u1aXYGUVr5LVH7FtFER88T4poFJxPqY40Tx81OTJD_bCm9P4Xd/pub"
 LINK_ISCRIZIONE = "https://docs.google.com/document/d/e/2PACX-1vT5_-P8WNOmRry8CUeQZLj9jh5U_ogR_2SLOeZiJoiUTicQaAdlyTPmfNtJO4y1ng/pub"
