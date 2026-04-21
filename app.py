@@ -7,6 +7,7 @@ from streamlit_autorefresh import st_autorefresh
 URL_CALENDARIO = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1738657109&single=true&output=csv"
 URL_TEAM = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1955830524&single=true&output=csv"
 URL_BEERCUP = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=1684440180&single=true&output=csv"
+URL_FASE_FINALE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3_prRD0nsNLmgShBA-n-QqnmCbcYWRvEZ_MYpS9DpARhj43CCbGjcR7EdCb9YlEsqNQsePKZY5YtE/pub?gid=2063867207&single=true&output=csv"
 
 # Incolla qui i link ai tuoi PDF su Google Drive (assicurati che siano pubblici)
 LINK_REGOLAMENTO = "https://docs.google.com/document/d/e/2PACX-1vSItQqV4_poywuIiJLu9hzQdjRlU5u1aXYGUVr5LVH7FtFER88T4poFJxPqY40Tx81OTJD_bCm9P4Xd/pub"
@@ -97,14 +98,78 @@ elif st.session_state.page == "🏆 Classifiche":
 # --- FASE FINALE ---
 elif st.session_state.page == "🏅 Fase Finale":
     st.header("🏅 Fase Finale")
-    gold, silver = st.tabs(["🔥 TORNEO GOLD", "🛡️ TORNEO SILVER"])
-    with gold:
-        st.subheader("Tabellone ad eliminazione diretta - GOLD")
-        st.write("Incroci: 1ª Girone A vs 2ª Girone B | 1ª Girone B vs 2ª Girone A... ecc.")
-        # Qui potrai inserire una tabella o un'immagine del tabellone
-    with silver:
-        st.subheader("Tabellone ad eliminazione diretta - SILVER")
+    
+    # Selezione Torneo tramite Bottoni
+    col_btn1, col_btn2 = st.columns(2)
+    if 'sub_torneo' not in st.session_state:
+        st.session_state.sub_torneo = "GOLD"
 
+    with col_btn1:
+        if st.button("🔥 TORNEO GOLD", use_container_width=True):
+            st.session_state.sub_torneo = "GOLD"
+    with col_btn2:
+        if st.button("🛡️ TORNEO SILVER", use_container_width=True):
+            st.session_state.sub_torneo = "SILVER"
+
+    st.divider()
+    st.subheader(f"Tabellone {st.session_state.sub_torneo}")
+
+    df_fase = load_data(URL_FASE_FINALE)
+    
+    if not df_fase.empty:
+        # Filtriamo per il torneo scelto (Gold o Silver)
+        df_plot = df_fase[df_fase['Torneo'] == st.session_state.sub_torneo]
+
+        def draw_match(match_label, fase):
+            # Cerca il match specifico nel DataFrame
+            match_data = df_plot[(df_plot['Fase'] == fase) & (df_plot['Match_ID'] == match_label)]
+            if not match_data.empty:
+                m = match_data.iloc[0]
+                # Stile del box match
+                st.markdown(f"""
+                <div style="border: 2px solid #ddd; padding: 10px; border-radius: 5px; background: #f9f9f9; text-align: center; margin-bottom: 10px;">
+                    <small>{match_label}</small><br>
+                    <b>{m['Team_A']}</b> ({m['Score_A']})<br>
+                    <span style="color: red;">vs</span><br>
+                    <b>{m['Team_B']}</b> ({m['Score_B']})
+                </div>
+                """, unsafe_allow_value=True)
+            else:
+                st.info(f"{match_label} da definire")
+
+        # --- DISEGNO DELLO SCHEMA (LAYOUT A COLONNE) ---
+        # Se è il Silver, seguiamo lo schema della tua foto
+        if st.session_state.sub_torneo == "SILVER":
+            # Riga Spareggi
+            st.write("### 1. Spareggi")
+            c1, c2, c3, c4 = st.columns(4)
+            with c1: draw_match("Spareggio 1", "Spareggio")
+            with c2: draw_match("Spareggio 2", "Spareggio")
+            with c3: draw_match("Spareggio 3", "Spareggio")
+            with c4: draw_match("Spareggio 4", "Spareggio")
+
+            # Riga Quarti
+            st.write("### 2. Quarti di Finale")
+            q1, q2, q3, q4 = st.columns(4)
+            with q1: draw_match("Quarto 1", "Quarti")
+            with q2: draw_match("Quarto 2", "Quarti")
+            with q3: draw_match("Quarto 3", "Quarti")
+            with q4: draw_match("Quarto 4", "Quarti")
+
+            # Semifinali e Finale
+            st.write("### 3. Fasi Finali")
+            s1, f, s2 = st.columns([1, 1.5, 1])
+            with s1: 
+                st.write("Semifinale 1")
+                draw_match("Semi 1", "Semifinale")
+            with s2: 
+                st.write("Semifinale 2")
+                draw_match("Semi 2", "Semifinale")
+            with f:
+                st.write("🏆 FINALE")
+                draw_match("Finale", "Finale")
+    else:
+        st.warning("Dati del tabellone non ancora disponibili.")
 # --- BEER CUP ---
 elif st.session_state.page == "🍺 Beer Cup":
     st.header("🍺 Classifica Beer Cup")
